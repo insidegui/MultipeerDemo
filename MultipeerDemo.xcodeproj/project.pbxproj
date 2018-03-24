@@ -11,6 +11,8 @@
 		DD02F6932065B1A6003D8E64 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DD02F6922065B1A6003D8E64 /* Assets.xcassets */; };
 		DD02F6962065B1A6003D8E64 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DD02F6942065B1A6003D8E64 /* LaunchScreen.storyboard */; };
 		DD02F6A22065B1E4003D8E64 /* CSBigRoundedButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD02F6A12065B1E4003D8E64 /* CSBigRoundedButton.swift */; };
+		DDAC10322066063F008EE2C1 /* FloatingPictureViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDAC10312066063F008EE2C1 /* FloatingPictureViewController.swift */; };
+		DDAC1034206609E6008EE2C1 /* UIImage+Orientation.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDAC1033206609E6008EE2C1 /* UIImage+Orientation.swift */; };
 		DDF978BC2065B27800637CC9 /* CSOnboardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDF978BB2065B27800637CC9 /* CSOnboardingViewController.swift */; };
 		DDF978BE2065B2C600637CC9 /* DemoFlowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDF978BD2065B2C600637CC9 /* DemoFlowController.swift */; };
 		DDF978C02065B84500637CC9 /* LoadingOverlayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDF978BF2065B84500637CC9 /* LoadingOverlayViewController.swift */; };
@@ -25,6 +27,8 @@
 		DD02F6952065B1A6003D8E64 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		DD02F6972065B1A6003D8E64 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		DD02F6A12065B1E4003D8E64 /* CSBigRoundedButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CSBigRoundedButton.swift; sourceTree = "<group>"; };
+		DDAC10312066063F008EE2C1 /* FloatingPictureViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FloatingPictureViewController.swift; sourceTree = "<group>"; };
+		DDAC1033206609E6008EE2C1 /* UIImage+Orientation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Orientation.swift"; sourceTree = "<group>"; };
 		DDF978BB2065B27800637CC9 /* CSOnboardingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CSOnboardingViewController.swift; sourceTree = "<group>"; };
 		DDF978BD2065B2C600637CC9 /* DemoFlowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DemoFlowController.swift; sourceTree = "<group>"; };
 		DDF978BF2065B84500637CC9 /* LoadingOverlayViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingOverlayViewController.swift; sourceTree = "<group>"; };
@@ -75,8 +79,10 @@
 			isa = PBXGroup;
 			children = (
 				DDF978C12065BC7000637CC9 /* UIViewController+Children.swift */,
+				DDAC1033206609E6008EE2C1 /* UIImage+Orientation.swift */,
 				DDF978BB2065B27800637CC9 /* CSOnboardingViewController.swift */,
 				DDF978BF2065B84500637CC9 /* LoadingOverlayViewController.swift */,
+				DDAC10312066063F008EE2C1 /* FloatingPictureViewController.swift */,
 				DDF978BD2065B2C600637CC9 /* DemoFlowController.swift */,
 			);
 			path = Controllers;
@@ -192,8 +198,10 @@
 				DDF978C22065BC7000637CC9 /* UIViewController+Children.swift in Sources */,
 				DD02F6A22065B1E4003D8E64 /* CSBigRoundedButton.swift in Sources */,
 				DDF978BC2065B27800637CC9 /* CSOnboardingViewController.swift in Sources */,
+				DDAC10322066063F008EE2C1 /* FloatingPictureViewController.swift in Sources */,
 				DD02F68C2065B1A6003D8E64 /* AppDelegate.swift in Sources */,
 				DDF978C02065B84500637CC9 /* LoadingOverlayViewController.swift in Sources */,
+				DDAC1034206609E6008EE2C1 /* UIImage+Orientation.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -31,6 +31,9 @@ class DemoFlowController: UIViewController {
                 self?.didTapDeviceButton(button, for: deviceName)
             })
         }
+        s.didReceiveFile = { [weak self] url in
+            self?.didReceiveImage(at: url)
+        }
 
         return s
     }()
@@ -93,9 +96,9 @@ class DemoFlowController: UIViewController {
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.3, execute: {
             self.transitionIntoConnectingState(for: button)
             DispatchQueue.main.asyncAfter(deadline: .now() + 1, execute: {
-                self.transitionIntoUploadingState(for: button)
+                self.transitionIntoUploadingState()
                 DispatchQueue.main.asyncAfter(deadline: .now() + 2, execute: {
-                    self.transitionIntoSuccessState(for: button)
+                    self.transitionIntoSuccessState()
                 })
             })
         })
@@ -112,7 +115,7 @@ class DemoFlowController: UIViewController {
         loadingController.animateIn()
     }
 
-    private func transitionIntoUploadingState(for button: CSBigRoundedButton) {
+    private func transitionIntoUploadingState() {
         loadingController.title = "Uploading"
     }
 
@@ -120,7 +123,7 @@ class DemoFlowController: UIViewController {
         return UINotificationFeedbackGenerator()
     }()
 
-    private func transitionIntoSuccessState(for button: CSBigRoundedButton) {
+    private func transitionIntoSuccessState() {
         loadingController.hideSpinner()
         loadingController.title = "Done!"
         
@@ -144,8 +147,20 @@ class DemoFlowController: UIViewController {
                 self.hideOverlayLoading()
             })
         } else {
-            hideOverlayLoading()
+            transitionIntoSuccessState()
         }
+    }
+
+    private lazy var receivedImageController = FloatingPictureViewController()
+
+    private func didReceiveImage(at url: URL) {
+        guard let image = UIImage(contentsOfFile: url.path) else { return }
+
+        receivedImageController = FloatingPictureViewController()
+
+        installChild(receivedImageController)
+
+        receivedImageController.animate(image: image, from: .bottom)
     }
 
     override var preferredStatusBarStyle: UIStatusBarStyle {
@@ -163,13 +178,15 @@ extension DemoFlowController: UIImagePickerControllerDelegate, UINavigationContr
 
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
         DispatchQueue.main.async {
+            self.transitionIntoUploadingState()
+
             guard let image = info[UIImagePickerControllerOriginalImage] as? UIImage else {
                 NSLog("Invalid content!")
                 self.hideOverlayLoading()
                 return
             }
 
-            guard let pngData = UIImagePNGRepresentation(image) else {
+            guard let pngData = UIImagePNGRepresentation(image.withOrientationFixed) else {
                 NSLog("Invalid content!")
                 self.hideOverlayLoading()
                 return

@@ -177,6 +177,13 @@ extension PeerService: MCSessionDelegate {
 
     func session(_ session: MCSession, didFinishReceivingResourceWithName resourceName: String, fromPeer peerID: MCPeerID, at localURL: URL?, withError error: Error?) {
         NSLog("Finished resource download: \(resourceName)")
+
+        // MD12
+        guard let url = localURL else { return }
+
+        DispatchQueue.main.async {
+            self.didReceiveFile?(url)
+        }
     }
 
 }
