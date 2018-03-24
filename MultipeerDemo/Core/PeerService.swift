@@ -81,6 +81,11 @@ final class PeerService: NSObject {
         // MD10
         guard let peer = devices[name] else { return }
 
+        guard !session.connectedPeers.contains(peer) else {
+            didConnectToDevice?(peer.displayName)
+            return
+        }
+
         browser.invitePeer(peer, to: session, withContext: nil, timeout: 10)
     }
 

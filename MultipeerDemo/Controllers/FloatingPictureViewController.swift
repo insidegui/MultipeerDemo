@@ -39,6 +39,9 @@ class FloatingPictureViewController: UIViewController {
         imageViewCenteringConstraint.isActive = true
         imageView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 30).isActive = true
         imageView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -30).isActive = true
+
+        let tap = UITapGestureRecognizer(target: self, action: #selector(hide))
+        view.addGestureRecognizer(tap)
     }
 
     func animate(image: UIImage, from origin: AnimationOrigin) {
@@ -55,7 +58,7 @@ class FloatingPictureViewController: UIViewController {
         }, completion: nil)
     }
 
-    func hide() {
+    @objc func hide() {
         UIView.animate(withDuration: 0.4, animations: {
             self.view.alpha = 0
         }) { _ in
