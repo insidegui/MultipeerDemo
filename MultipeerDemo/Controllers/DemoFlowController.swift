@@ -22,6 +22,18 @@ class DemoFlowController: UIViewController {
         return c
     }()
 
+    private lazy var peerService: PeerService = {
+        let s = PeerService()
+
+        s.didFindDevice = { [weak self] deviceName in
+            self?.homeViewController.addButton(with: deviceName, action: { button in
+                self?.didTapDeviceButton(button, for: deviceName)
+            })
+        }
+
+        return s
+    }()
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -41,11 +53,30 @@ class DemoFlowController: UIViewController {
         }
     }
 
-    private func didTapDeviceButton(_ button: CSBigRoundedButton) {
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+
+        peerService.startAdvertising()
+        peerService.startListening()
+    }
+
+    private func didTapDeviceButton(_ button: CSBigRoundedButton, for device: String = "") {
         guard !isInDemoMode else {
             runDemoUpload(for: button)
             return
         }
+
+        transitionIntoConnectingState(for: button)
+
+        peerService.didConnectToDevice = { [weak self] _ in
+            self?.showPhotoPicker()
+        }
+
+        peerService.connectToDevice(named: device)
+    }
+
+    private func showPhotoPicker() {
+        
     }
 
     private func runDemoUpload(for button: CSBigRoundedButton) {

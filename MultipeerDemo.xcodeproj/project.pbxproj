@@ -15,6 +15,7 @@
 		DDF978BE2065B2C600637CC9 /* DemoFlowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDF978BD2065B2C600637CC9 /* DemoFlowController.swift */; };
 		DDF978C02065B84500637CC9 /* LoadingOverlayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDF978BF2065B84500637CC9 /* LoadingOverlayViewController.swift */; };
 		DDF978C22065BC7000637CC9 /* UIViewController+Children.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDF978C12065BC7000637CC9 /* UIViewController+Children.swift */; };
+		DDF978C52065CC2E00637CC9 /* PeerService.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDF978C42065CC2E00637CC9 /* PeerService.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,6 +29,7 @@
 		DDF978BD2065B2C600637CC9 /* DemoFlowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DemoFlowController.swift; sourceTree = "<group>"; };
 		DDF978BF2065B84500637CC9 /* LoadingOverlayViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingOverlayViewController.swift; sourceTree = "<group>"; };
 		DDF978C12065BC7000637CC9 /* UIViewController+Children.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Children.swift"; sourceTree = "<group>"; };
+		DDF978C42065CC2E00637CC9 /* PeerService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PeerService.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -60,6 +62,7 @@
 		DD02F68A2065B1A6003D8E64 /* MultipeerDemo */ = {
 			isa = PBXGroup;
 			children = (
+				DDF978C32065CC0100637CC9 /* Core */,
 				DD02F6A02065B1B9003D8E64 /* Resources */,
 				DD02F69F2065B1B5003D8E64 /* Views */,
 				DD02F69E2065B1B0003D8E64 /* Bootstrap */,
@@ -103,6 +106,14 @@
 				DD02F6972065B1A6003D8E64 /* Info.plist */,
 			);
 			path = Resources;
+			sourceTree = "<group>";
+		};
+		DDF978C32065CC0100637CC9 /* Core */ = {
+			isa = PBXGroup;
+			children = (
+				DDF978C42065CC2E00637CC9 /* PeerService.swift */,
+			);
+			path = Core;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -176,6 +187,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DDF978C52065CC2E00637CC9 /* PeerService.swift in Sources */,
 				DDF978BE2065B2C600637CC9 /* DemoFlowController.swift in Sources */,
 				DDF978C22065BC7000637CC9 /* UIViewController+Children.swift in Sources */,
 				DD02F6A22065B1E4003D8E64 /* CSBigRoundedButton.swift in Sources */,
