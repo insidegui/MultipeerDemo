@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import MobileCoreServices
 
 class DemoFlowController: UIViewController {
 
@@ -75,8 +76,17 @@ class DemoFlowController: UIViewController {
         peerService.connectToDevice(named: device)
     }
 
+    private lazy var photoPickerController: UIImagePickerController = {
+        let c = UIImagePickerController()
+
+        c.mediaTypes = [kUTTypeImage as String]
+        c.delegate = self
+
+        return c
+    }()
+
     private func showPhotoPicker() {
-        
+        present(photoPickerController, animated: true, completion: nil)
     }
 
     private func runDemoUpload(for button: CSBigRoundedButton) {
@@ -125,8 +135,52 @@ class DemoFlowController: UIViewController {
         loadingController.animateOut()
     }
 
+    private func didFinishUpload(with error: Error?) {
+        NSLog("Did finish upload. Error: \(String(describing: error))")
+
+        if let error = error {
+            loadingController.title = error.localizedDescription
+            DispatchQueue.main.asyncAfter(deadline: .now() + 2, execute: {
+                self.hideOverlayLoading()
+            })
+        } else {
+            hideOverlayLoading()
+        }
+    }
+
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return .lightContent
+    }
+
+}
+
+extension DemoFlowController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+
+    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+        dismiss(animated: true, completion: nil)
+        hideOverlayLoading()
+    }
+
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
+        DispatchQueue.main.async {
+            guard let image = info[UIImagePickerControllerOriginalImage] as? UIImage else {
+                NSLog("Invalid content!")
+                self.hideOverlayLoading()
+                return
+            }
+
+            guard let pngData = UIImagePNGRepresentation(image) else {
+                NSLog("Invalid content!")
+                self.hideOverlayLoading()
+                return
+            }
+
+            self.dismiss(animated: true, completion: nil)
+
+            self.peerService.sendPicture(with: pngData, completion: { [weak self] error in
+                self?.didFinishUpload(with: error)
+            })
+        }
     }
 
 }

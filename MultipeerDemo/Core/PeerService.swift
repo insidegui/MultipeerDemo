@@ -84,6 +84,33 @@ final class PeerService: NSObject {
         browser.invitePeer(peer, to: session, withContext: nil, timeout: 10)
     }
 
+    func sendPicture(with data: Data, completion: @escaping (Error?) -> Void) {
+        // MD11
+        guard let peer = session.connectedPeers.last else {
+            NSLog("No connected peers to send to")
+            return
+        }
+
+        guard let baseURL = FileManager.default.urls(for: .cachesDirectory, in: .userDomainMask).first else {
+            fatalError("No caches directory. WHAT?!")
+        }
+
+        let filename = UUID().uuidString + ".png"
+
+        let fileURL = baseURL.appendingPathComponent(filename)
+
+        do {
+            try data.write(to: fileURL, options: .atomicWrite)
+
+            session.sendResource(at: fileURL,
+                                 withName: filename,
+                                 toPeer: peer,
+                                 withCompletionHandler: completion)
+        } catch {
+            completion(error)
+        }
+    }
+
 }
 
 // MD8
@@ -119,7 +146,7 @@ extension PeerService: MCNearbyServiceAdvertiserDelegate {
 
 }
 
-// MD2
+// MD3
 extension PeerService: MCSessionDelegate {
 
     func session(_ session: MCSession, peer peerID: MCPeerID, didChange state: MCSessionState) {
@@ -145,11 +172,11 @@ extension PeerService: MCSessionDelegate {
     }
 
     func session(_ session: MCSession, didStartReceivingResourceWithName resourceName: String, fromPeer peerID: MCPeerID, with progress: Progress) {
-        
+        NSLog("Started resource download: \(resourceName)")
     }
 
     func session(_ session: MCSession, didFinishReceivingResourceWithName resourceName: String, fromPeer peerID: MCPeerID, at localURL: URL?, withError error: Error?) {
-        
+        NSLog("Finished resource download: \(resourceName)")
     }
 
 }
