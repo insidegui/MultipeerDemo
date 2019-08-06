@@ -39,7 +39,7 @@ class LoadingOverlayViewController: UIViewController {
     }()
 
     private lazy var spinner: UIActivityIndicatorView = {
-        return UIActivityIndicatorView(activityIndicatorStyle: .white)
+        return UIActivityIndicatorView(style: .white)
     }()
 
     override func viewWillAppear(_ animated: Bool) {
@@ -67,7 +67,7 @@ class LoadingOverlayViewController: UIViewController {
             self.view.alpha = 0
         }) { _ in
             self.view.removeFromSuperview()
-            self.removeFromParentViewController()
+            self.removeFromParent()
         }
     }
 

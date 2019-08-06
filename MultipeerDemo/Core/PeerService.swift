@@ -165,6 +165,8 @@ extension PeerService: MCSessionDelegate {
             print("Connecting to \(peerID.displayName)")
         case .notConnected:
             print("NOT connected to \(peerID.displayName)")
+        @unknown default:
+            print("Unknown state \(state)")
         }
     }
 

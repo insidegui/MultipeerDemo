@@ -63,7 +63,7 @@ class FloatingPictureViewController: UIViewController {
             self.view.alpha = 0
         }) { _ in
             self.view.removeFromSuperview()
-            self.removeFromParentViewController()
+            self.removeFromParent()
         }
     }
 

@@ -59,7 +59,7 @@ open class CSOnboardingViewController: UIViewController {
 
         let kern: CGFloat = -0.55
 
-        let attrs: [NSAttributedStringKey: Any] = [
+        let attrs: [NSAttributedString.Key: Any] = [
             .font: titleFont,
             .kern: kern,
             .foregroundColor: titleTextColor,

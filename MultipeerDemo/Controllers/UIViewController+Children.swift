@@ -11,11 +11,11 @@ import UIKit
 extension UIViewController {
 
     func installChild(_ controller: UIViewController) {
-        addChildViewController(controller)
+        addChild(controller)
         controller.view.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         controller.view.frame = view.bounds
         view.addSubview(controller.view)
-        controller.didMove(toParentViewController: self)
+        controller.didMove(toParent: self)
     }
 
 }

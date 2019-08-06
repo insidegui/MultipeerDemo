@@ -133,10 +133,10 @@ open class CSBigRoundedButton: UIButton {
     }
 
     open override var intrinsicContentSize: CGSize {
-        return CGSize(width: UIViewNoIntrinsicMetric, height: Metrics.height)
+        return CGSize(width: UIView.noIntrinsicMetric, height: Metrics.height)
     }
 
-    private let animationOptions: UIViewAnimationOptions = [
+    private let animationOptions: UIView.AnimationOptions = [
         .beginFromCurrentState,
         .allowAnimatedContent,
         .allowUserInteraction
